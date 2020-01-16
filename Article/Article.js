@@ -85,16 +85,73 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Professional Software Development in 2027',
+    date: 'Mar 14th, 2027',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
+function getArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleFirstP = document.createElement('p');
+  const articleSecondP = document.createElement('p');
+  const articleThirdP = document.createElement('p');
+  const buttonExpand = document.createElement('span');
+
+
+  article.append(articleTitle);
+  article.append(articleDate);
+  article.append(articleFirstP);
+  article.append(articleSecondP);
+  article.append(articleThirdP);
+  article.append(buttonExpand);
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  buttonExpand.classList.add('expandButton')
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  articleFirstP.textContent = firstParagraph;
+  articleSecondP.textContent = secondParagraph;
+  articleThirdP.textContent = thirdParagraph;
+  buttonExpand.textContent = 'Click to Expand';
+
+  buttonExpand.addEventListener('click', event => {
+    article.classList.toggle('article-open');
+    firstParagraph.classList.toggle('toggle-on');
+    secondParagraph.classList.toggle('toggle-on');
+    thirdParagraph.classList.toggle('toggle-on');
+  })
+
+  return article;
+}
+const articles = document.querySelector('.articles')
+data.forEach(x => {
+  articles.append(getArticle(x.title, x.date, x.firstParagraph, x.secondParagraph, x.thirdParagraph))
+})
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
-  <div class="article">
-    <h2>{title of the article}</h2>
-    <p class="date">{date of the article}</p>
+  <div class="article"> xx
+    <h2>{title of the article}</h2> xx
+    <p class="date">{date of the article}</p> xx
 
-    {three separate paragraph elements}
+    {three separate paragraph elements} xx
 
     <span class='expandButton'></span>
   </div>
