@@ -112,3 +112,7 @@ body {
   font-family: 'Roboto';
   background-color: #fffef7;
 }
+.article-row {
+  display: flex;
+  flex-direction: row;
+}

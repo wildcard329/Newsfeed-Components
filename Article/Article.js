@@ -106,15 +106,18 @@ const data = [
 
 function getArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
   const article = document.createElement('div');
+  const articleRow = document.createElement('div');
   const articleTitle = document.createElement('h2');
+  const articleCloseBtn = document.createElement('a') 
   const articleDate = document.createElement('p');
   const articleFirstP = document.createElement('p');
   const articleSecondP = document.createElement('p');
   const articleThirdP = document.createElement('p');
   const buttonExpand = document.createElement('span');
 
-
-  article.append(articleTitle);
+  article.append(articleRow);
+  articleRow.append(articleCloseBtn);
+  articleRow.append(articleTitle);
   article.append(articleDate);
   article.append(articleFirstP);
   article.append(articleSecondP);
@@ -122,15 +125,22 @@ function getArticle(title, date, firstParagraph, secondParagraph, thirdParagraph
   article.append(buttonExpand);
 
   article.classList.add('article');
+  articleRow.classList.add('article-row');
   articleDate.classList.add('date');
   buttonExpand.classList.add('expandButton')
 
   articleTitle.textContent = title;
+  articleCloseBtn.textContent = 'X';
   articleDate.textContent = date;
   articleFirstP.textContent = firstParagraph;
   articleSecondP.textContent = secondParagraph;
   articleThirdP.textContent = thirdParagraph;
   buttonExpand.textContent = 'Click to Expand';
+
+  articleCloseBtn.addEventListener('click', e => {
+    console.log(e.target.parentNode.parentNode)
+    e.target.parentNode.parentNode.parentNode.removeChild(e.target.parentNode.parentNode);
+  })
 
   buttonExpand.addEventListener('click', event => {
     article.classList.toggle('article-open');
@@ -145,6 +155,9 @@ const articles = document.querySelector('.articles')
 data.forEach(x => {
   articles.append(getArticle(x.title, x.date, x.firstParagraph, x.secondParagraph, x.thirdParagraph))
 })
+
+
+
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
   <div class="article"> xx
